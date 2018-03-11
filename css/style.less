@@ -1,0 +1,280 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.my-mixin-circular {
+	width: 260.7px;
+	height: 260.7px;
+	border-radius: 100%;
+	position: relative;
+	background: blue;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	img {
+		width: 80%;
+		height: 70%;
+	}
+}
+.box(
+@width: 100%,
+@height: 100%,
+@display: flex,
+@position: static,
+@overflow: hidden,
+@float: none,
+@margin: 0,
+@padding: 0,
+@border: none
+)
+{
+	width: @width;
+	height: @height;
+	display: @display; //aqui ta flex
+	position: @position;
+	overflow: @overflow;
+	float: @float;
+	margin: @margin;
+	padding: @padding;
+	border: @border;
+}
+
+.bg(
+@url: 'paisagem.jpg',
+@attachment: scroll
+)
+{
+	-webkit-background: url('../img/@{url}') no-repeat center center @attachment;
+	-moz-background: url('../img/@{url}') no-repeat center center @attachment;
+	-o-background: url('../img/@{url}') no-repeat center center @attachment;
+	background: url('../img/@{url}') no-repeat center center @attachment;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.section1 {
+	background-color: white;
+	.box(@width: 100%, @height: 800px, @position: relative);
+	@media screen and (max-width: 480px) {
+		height: 480px;
+	}
+	@media screen and (min-width: 481px) and (max-width: 800px) {
+		height: 600px;
+	}
+	//child---
+	.slide {
+		// background: #363636;
+		.box(
+			@height: 800px,
+			@position: relative
+		);
+		z-index: 1;
+
+		.img {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			background-size: 100% 100%;
+			background-position: center;
+		}
+		.img1 {
+			.img;
+			background-image: url("../img/ideia.jpg");
+		}
+		.img2 {
+			.img;
+			background-image: url("../img/suit.jpg");
+		}
+		.img3 {
+			.img;
+			background-image: url("../img/cidade.jpg");
+		}
+		// img {
+		// 	width: 100%;
+		// 	height: 800px;
+
+		// 	z-index: 1;
+		// }
+	}
+
+	.ui.container {
+		overflow: hidden;
+		position: absolute;
+		z-index: 2;
+		bottom: 0;
+		width: 100%!important;
+		// background: yellow;
+	}
+
+}
+
+.section2 {
+	.box(@width: 100vw, @height: auto);
+	// .bg(@url: "cidade.jpg");
+
+
+	.ui.container {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		.grid2 {
+			.column {
+				height: auto;
+				display: flex;
+				justify-content: center;
+				flex-flow: row wrap;
+				.primeiro {
+					.my-mixin-circular;
+					background: #000;
+				}
+				.segundo {
+					.my-mixin-circular;
+					background: #000;
+				}
+				.terceiro {
+					.my-mixin-circular;
+					background: #000;
+				}
+				.quarto {
+					.my-mixin-circular;
+					background: #000;
+				}
+				.ui.header {
+					flex: 1 0 100%;
+				}
+				.ui.sub.header {
+					flex: 0.5 0 50%;
+				}
+			} //fecha column
+		} //fecha grid
+	} //fecha container
+} //fecha setiction2
+
+.section3 {
+	.box(@height: auto);
+	background: black;
+
+	.ui.container {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		.ui.header {
+			font-size: 2rem;
+		}
+		.ui.grid {
+			padding-top: 40px;
+			.column {
+				// padding: 0 50px 10px 50px;
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+				.milli {
+					// flex: 0.95 0 auto;
+				}
+			}
+		} //fecha grid
+	} //fecha container
+} //fecha section3
+
+
+.section4 {
+	.box(@height: 50vh, @position: relative);
+	.bg(@url: "preocupado.jpg", @attachment: fixed);
+	-webkit-filter: grayscale(1); //contrast(2) 
+	filter: grayscale(1); //contrast(2) 
+
+	.ui.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+} //fecha section4
+
+
+
+.section5 {
+	.box(@height: auto, @display: flex);
+	background: black;
+	justify-content: center;
+
+	.ui.container {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		.grid {
+			padding-top: 40px;
+			.column {
+				// display: flex;
+				// justify-content: center;
+				// align-items: center;
+
+				.div-form {
+					display: block;
+					margin: 0 auto;
+				}
+			}
+		} //fecha grid
+	} //fecha container
+} //fecha section5
+
+.section6 {
+	.box(@height: auto);
+	.bg("preocupado.jpg", fixed);
+
+	.ui.container {
+		padding-top: 50px;
+		padding-bottom: 50px;
+		@media screen and (max-width: 768px){
+			width: 100%!important;
+		}
+		.ui.grid1 > {
+			.ui.segment {
+				margin-top: 14px;
+				margin-bottom: 50px;
+			}
+		}
+		.ui.grid2 > .column {
+			display: flex;
+			justify-content: center;
+			padding-top: 0;
+			.ui.segment {
+				// flex: 0.1 0 100%;
+				width: 200px;
+				padding: 0;
+				overflow: hidden;
+				display: flex;
+				flex-flow: row wrap;
+				align-items:center;
+				justify-content: center;
+				.ui.image {
+					margin: 0 0 20px 0;
+					padding: 0 10px 0 10px;
+					flex: 1 0 100%;
+				}
+				.ui.header {
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+}
+
+footer {
+	background: black;
+	// min-height: 100px;
+	height: auto;
+	padding: 50px 0 50px 0;
+	.open-credito {
+		cursor: pointer;
+	}
+	.close-credito {
+		cursor: pointer;
+	}
+	p {
+		color: #565656!important;
+	}
+}
